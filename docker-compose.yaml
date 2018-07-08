@@ -1,0 +1,32 @@
+version: "3.0"
+
+services:
+
+ container_mysql:
+  image: mysql:5.7.19
+
+  environment:
+   - MYSQL_DATABASE= loja
+   - MYSQL_USER=root
+   - MYSQL_ALLOW_EMPTY_PASSWORD=YES
+
+  volumes:
+   - /media/hoiama/DADOS/DADOS/8_Softwares/0_EmUso/0_Projetos/SistemasWeb/0_Git/Rep_Pess_Aulas/Aula_Docker/mysql:/var/lib/mysql
+
+
+ container_postgre:
+  image: postgres
+
+  environment:
+   - POSTGRES_USER=hoiama
+   - POSTGRES_PASSWORD= "250112"
+
+
+ container_apache:
+  image: servidor-aplicacao
+
+  ports:
+   - 8081:80
+
+  depends_on:
+   - container_mysql
